@@ -22,7 +22,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile.frontend
+      dockerfile: Dockerfile
 
     container_name: new_glass_frontend
 
