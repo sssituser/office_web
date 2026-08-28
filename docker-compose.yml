@@ -1,0 +1,39 @@
+services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: new_glass_backend
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./back_web:/app
+
+    environment:
+      DJANGO_DEBUG: "1"
+
+    restart: unless-stopped
+
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+
+    container_name: new_glass_frontend
+
+    ports:
+      - "5173:5173"
+
+    volumes:
+      - ./front_web:/app
+      - /app/node_modules
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped
